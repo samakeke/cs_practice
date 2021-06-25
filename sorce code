@@ -1,0 +1,108 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace samakeke
+{
+    class Program1
+    {
+        static void Main()
+        {
+            int move = 0;                        // ゲーム遷移
+            int a, b, c, d;                      // a 第一引数  b 第二引数　c 計算方法選択　d おわる
+            bool end = false;                    // プログラム終了フラグ
+            Program2 math = new Program2();         // 計算達
+
+            while (true)        // 無限ループ
+            {
+                switch (move)
+                {
+                    case 0:              // TITLE
+                        Console.WriteLine("タイトル画面のつもり\n1.スタート\n5.おわる");
+                        d = int.Parse(Console.ReadLine());
+
+                        switch (d)      // プログラム終了チェック
+                        {
+                            case 1:
+                                break;
+                            case 5:
+                                end = true;
+                                break;
+                        }
+                        if (end == true)
+                            break;
+
+                        move++;
+                        break;
+                    case 1:             // GAME
+                        Console.Write("第一引数は？　>　");
+                        a = int.Parse(Console.ReadLine());
+
+                        Console.Write("第二引数は？　>　");
+                        b = int.Parse(Console.ReadLine());
+
+                        Console.WriteLine("どの計算を行いますか?");
+                        Console.WriteLine("1.足算　2.引算　3.掛算　4.割算　5.やめる");
+                        
+                        c = int.Parse(Console.ReadLine());
+
+                        switch(c)
+                        {
+                            case 1:
+                                math.tasizan(a, b);
+                                break;
+                            case 2:
+
+                                break;
+                            case 3:
+
+                                break;
+                            case 4:
+
+                                break;
+                            case 5:
+                                end = true;
+                                break;
+                            default:
+
+                                break;
+                        }
+                        if (end == true)
+                            break;
+
+                        move++;
+                        break;
+                    case 2:             // END
+                        Console.WriteLine("エンド\n1.タイトルへ戻る\n5.おわる");
+                        d = int.Parse(Console.ReadLine());
+
+                        switch (d)
+                        {
+                            case 1:
+                                break;
+                            case 5:
+                                end = true;
+                                break;
+                        }
+                        if (end == true)
+                            break;
+
+                        move = 0;
+                        break;
+                }
+                if (end == true)
+                    break;
+            }
+        }
+    }
+}
+
+    class Program2
+    {
+        public void tasizan(int a, int b)
+        {
+            Console.WriteLine($"{a} + {b} = {a + b}");
+        }
+    }
