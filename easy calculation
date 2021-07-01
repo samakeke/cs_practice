@@ -1,0 +1,121 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class GameMain : MonoBehaviour
+{
+    [SerializeField]
+    private Button registerButton1;     // 登録1
+    [SerializeField]
+    private Button registerButton2;     // 登録2
+    [SerializeField]
+    private InputField inputField1;     // 入力フォーム1
+    [SerializeField]
+    private InputField inputField2;     // 入力フォーム2
+    [SerializeField]
+    private Button addButton;           // 足算ボタン
+    [SerializeField]
+    private Button subButton;           // 引算ボタン
+    [SerializeField]
+    private Button mulButton;           // 掛算ボタン
+    [SerializeField]
+    private Button divButton;           // 割算ボタン
+    private int register1InputText = default;
+    private int register2InputText = default;
+
+    void Start()
+    {
+        registerButton1.onClick.AddListener(() =>
+        {
+            Register1Onclick();
+        });
+
+        registerButton2.onClick.AddListener(() =>
+        {
+            Register2Onclick();
+        });
+
+        addButton.onClick.AddListener(() =>
+        {
+            AddOnClick(register1InputText, register2InputText);
+        });
+
+        subButton.onClick.AddListener(() =>
+        {
+            SubOnClick(register1InputText, register2InputText);
+        });
+
+        mulButton.onClick.AddListener(() =>
+        {
+            MulOnClick(register1InputText, register2InputText);
+        });
+
+        divButton.onClick.AddListener(() =>
+        {
+            DivOnClick(register1InputText, register2InputText);
+        });
+    }
+
+    public int AddOnClick(int x, int y)
+    {
+        Debug.Log(x + " + " + y + " = " + (x + y));
+        return x + y;
+    }
+
+    public int SubOnClick(int x, int y)
+    {
+        Debug.Log(x + " - " + y + " = " + (x - y));
+        return x - y;
+    }
+
+    public int MulOnClick(int x, int y)
+    {
+        Debug.Log(x + " * " + y + " = " + (x * y));
+        return x * y;
+    }
+
+    public int DivOnClick(int x, int y)
+    {
+        Debug.Log(x + " / " + y + " = " + (x / y));
+        return x / y;
+    }
+
+    public void Register1Onclick()
+    {
+        var inputField1Text = inputField1.text;
+        int num = default;
+
+        if (int.TryParse(inputField1Text, out num))
+        {
+            Debug.Log("パース成功");
+
+            register1InputText = num;
+
+            inputField1.text = "";
+        }
+        else
+        {
+            Debug.Log("パース失敗");
+        }
+    }
+
+    public void Register2Onclick()
+    {
+        var inputField2Text = inputField2.text;
+        int num = default;
+
+        if (int.TryParse(inputField2Text, out num))
+        {
+            Debug.Log("パース成功");
+
+            register2InputText = num;
+
+            inputField2.text = "";
+        }
+        else
+        {
+            Debug.Log("パース失敗");
+        }
+    }
+}
